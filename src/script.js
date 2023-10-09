@@ -531,19 +531,35 @@
     $('#autoSave').change(calculate);
 
     // 回数増減ボタン
-    $('.beforeClearMission').click(() => {
+    $('.beforeUseKizuna').click(() => {
+        const formValue = getFormValue();
+
+        $('#kizuna').val(formValue.kizuna + 1);
+        $('#gauge').val(formValue.gauge - 100);
+
+        calculate();
+    });
+    $('.afterUseKizuna').click(() => {
         const formValue = getFormValue();
 
         $('#kizuna').val(formValue.kizuna - 1);
+        $('#gauge').val(formValue.gauge + 100);
+
+        calculate();
+    });
+    $('.beforeClearMission').click(() => {
+        const formValue = getFormValue();
+
         $('#missionKizuna').val(formValue.missionKizuna + 1);
+        $('#kizuna').val(formValue.kizuna - 1);
 
         calculate();
     });
     $('.afterClearMission').click(() => {
         const formValue = getFormValue();
 
-        $('#kizuna').val(formValue.kizuna + 1);
         $('#missionKizuna').val(formValue.missionKizuna - 1);
+        $('#kizuna').val(formValue.kizuna + 1);
 
         calculate();
     });
